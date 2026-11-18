@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta
+    name="description"
+    content="Afeto Saboroso — pães fresquinhos, doces e salgados feitos com carinho."
+  >
+  <title>Afeto Saboroso</title>
+
+  <style>
+    :root {
+      --ink: #4a262e;
+      --pink: #f5b3bc;
+      --pink-light: #fff8f1;
+      --pink-soft: #f9dfe1;
+      --pink-hover: #e995a0;
+      --pink-dark: #9b4350;
+      --cream: #fcecd4;
+      --muted: #725452;
+      --border: #e2a3a6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    header {
+      background: var(--pink-light);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .top {
+      max-width: 1120px;
+      margin: auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      color: var(--pink-dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      transition:
+        transform 180ms ease,
+        filter 180ms ease;
+    }
+
+    .brand:hover,
+    .brand:focus-visible {
+      color: var(--pink-dark);
+    }
+
+    .brand:hover img,
+    .brand:focus-visible img {
+      transform: scale(1.08);
+      filter: drop-shadow(0 5px 8px rgba(155, 67, 80, 0.25));
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px 20px;
+    }
+
+    nav a,
+    nav .nav-action {
+      color: var(--ink);
+      font: 600 0.96rem Arial, sans-serif;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        transform 180ms ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--pink-dark);
+      background: var(--pink);
+      transform: translateY(-2px);
+    }
+
+    nav .nav-action:hover,
+    nav .nav-action:focus-visible {
+      color: var(--pink-dark);
+      background: var(--pink);
+      transform: translateY(-2px);
+    }
+
+    nav a:focus-visible,
+    nav .nav-action:focus-visible {
+      outline: 3px solid var(--pink-dark);
+      outline-offset: 3px;
+    }
+
+    .hero {
+      min-height: 440px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 72px 24px;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(74, 38, 46, 0.84),
+          rgba(74, 38, 46, 0.72)
+        ),
+        linear-gradient(135deg, #9b4350, #e7939d 55%, var(--cream));
+      color: #ffffff;
+    }
+
+    .hero-inner {
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font: 700 0.78rem Arial, sans-serif;
+    }
+
+    h1 {
+      margin: 14px 0;
+      font-size: clamp(2.5rem, 7vw, 4.7rem);
+      line-height: 1.02;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 26px;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 21px;
+      border-radius: 5px;
+      background: var(--pink);
+      color: var(--ink);
+      font: 700 0.95rem Arial, sans-serif;
+      text-decoration: none;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition:
+        background-color 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      background: var(--pink-dark);
+      color: #ffffff;
+      border-color: var(--pink-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(155, 67, 80, 0.28);
+    }
+
+    .brand:focus-visible,
+    nav a:focus-visible,
+    .button:focus-visible {
+      outline: 3px solid var(--pink-dark);
+      outline-offset: 3px;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: auto;
+      padding: 64px 24px;
+    }
+
+    .intro {
+      max-width: 680px;
+      margin: 0 auto 38px;
+      text-align: center;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 2rem;
+    }
+
+    .intro p,
+    .card p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--pink-light);
+      cursor: pointer;
+      transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .card:hover,
+    .card:focus-within {
+      background: var(--pink-soft);
+      border-color: var(--pink-dark);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(155, 67, 80, 0.18);
+    }
+
+    .icon {
+      font-size: 1.8rem;
+    }
+
+    .card h3 {
+      margin: 12px 0 8px;
+      font-size: 1.35rem;
+    }
+
+    .card p {
+      margin: 0;
+    }
+
+    .card-title {
+      display: block;
+      margin: 12px 0 8px;
+      font-size: 1.35rem;
+      font-weight: bold;
+    }
+
+    .card-description {
+      display: block;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .card {
+      width: 100%;
+      color: inherit;
+      font-family: inherit;
+      text-align: left;
+    }
+
+    .card:focus-visible {
+      outline: 3px solid var(--pink-dark);
+      outline-offset: 4px;
+    }
+
+    .callout {
+      margin-top: 48px;
+      padding: 28px;
+      border-radius: 9px;
+      background: var(--pink);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .callout p {
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 30px 24px;
+      background: var(--ink);
+      color: var(--pink-light);
+    }
+
+    .foot {
+      max-width: 1120px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      font: 0.92rem Arial, sans-serif;
+    }
+
+    footer a {
+      color: var(--pink-light);
+    }
+
+    .card-modal {
+      width: min(520px, calc(100% - 32px));
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--pink-light);
+      color: var(--ink);
+      box-shadow: 0 24px 60px rgba(74, 38, 46, 0.35);
+    }
+
+    .card-modal::backdrop {
+      background: rgba(74, 38, 46, 0.58);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      padding: 28px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      color: var(--pink-dark);
+    }
+
+    .modal-status {
+      margin: -4px 0 16px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .modal-close {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--pink);
+      color: var(--pink-dark);
+      font: 700 1.25rem Arial, sans-serif;
+      cursor: pointer;
+      transition:
+        background-color 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+    }
+
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      background: var(--pink-dark);
+      color: #ffffff;
+      transform: scale(1.08);
+      outline: 3px solid var(--pink);
+      outline-offset: 2px;
+    }
+
+    .modal-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .modal-list[hidden] {
+      display: none;
+    }
+
+    .modal-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--cream);
+      line-height: 1.4;
+    }
+
+    .option-icon {
+      min-width: 28px;
+      font-size: 1.35rem;
+      text-align: center;
+    }
+
+    .modal-list a {
+      color: var(--pink-dark);
+      font-weight: bold;
+    }
+
+    .modal-list a:hover,
+    .modal-list a:focus-visible {
+      color: var(--pink-dark);
+    }
+
+    .login-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .login-form[hidden] {
+      display: none;
+    }
+
+    .login-form label {
+      display: grid;
+      gap: 6px;
+      font: 600 0.95rem Arial, sans-serif;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--pink-light);
+      color: var(--ink);
+      font: 1rem Arial, sans-serif;
+    }
+
+    .login-form input:focus-visible {
+      outline: 3px solid var(--pink-dark);
+      outline-offset: 2px;
+    }
+
+    .login-form .button {
+      justify-self: start;
+    }
+
+    .login-note,
+    .login-status {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 760px) {
+      .top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 380px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="top">
+      <a class="brand" href="#inicio" aria-label="Ir para o início">
+        <img
+          src="logo.png"
+          alt="Logo da Afeto Saboroso"
+          width="68"
+          height="68"
+        > Afeto Saboroso
+      </a>
+
+      <nav aria-label="Menu principal">
+        <button
+          class="nav-action"
+          type="button"
+          data-dialog-action="contact"
+          aria-haspopup="dialog"
+          aria-controls="card-modal"
+        >
+          Contato
+        </button>
+        <button
+          class="nav-action"
+          type="button"
+          data-dialog-action="jobs"
+          aria-haspopup="dialog"
+          aria-controls="card-modal"
+        >
+          Trabalhe Conosco
+        </button>
+        <button
+          class="nav-action"
+          type="button"
+          data-dialog-action="login"
+          aria-haspopup="dialog"
+          aria-controls="card-modal"
+        >
+          Conta
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-inner">
+      <h1>Feito com carinho, todos os dias.</h1>
+      <p>
+        Pães quentinhos, receitas de família e aquele cheirinho bom
+        que dá vontade de ficar.
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <div class="intro">
+      <h2>Bem-vindo à nossa padaria</h2>
+      <p>
+        Na Afeto Saboroso, cada fornada é preparada com ingredientes
+        selecionados e muito cuidado. Escolha algo gostoso e aproveite!
+      </p>
+    </div>
+
+    <section class="cards" aria-label="Nossas opções">
+      <button
+        class="card"
+        id="doces"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="card-modal"
+        data-card="doces"
+      >
+        <span class="icon" aria-hidden="true">🍰</span>
+        <span class="card-title">Doces</span>
+        <span class="card-description">
+          Bolos, tortas, sonhos e outras delícias para adoçar o seu dia.
+        </span>
+      </button>
+
+      <button
+        class="card"
+        id="salgados"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="card-modal"
+        data-card="salgados"
+      >
+        <span class="icon" aria-hidden="true">🥐</span>
+        <span class="card-title">Salgados</span>
+        <span class="card-description">
+          Pães, empadas e salgados assados, sempre fresquinhos.
+        </span>
+      </button>
+
+      <button
+        class="card"
+        id="encomendas"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="card-modal"
+        data-card="encomendas"
+      >
+        <span class="icon" aria-hidden="true">🎂</span>
+        <span class="card-title">Encomendas</span>
+        <span class="card-description">
+          Conte sua ocasião para a gente preparar algo especial.
+        </span>
+      </button>
+    </section>
+
+    <section class="callout">
+      <h2>Dúvidas ou pedidos especiais?</h2>
+      <p>Deixe os quitutes com a gente e aproveite cada momento.</p>
+      <button
+        class="button"
+        id="contact-cta"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="card-modal"
+      >
+        Entre em contato
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <span>© 2026 Afeto Saboroso - Beatriz Silva Machado de Souza - DSM 2026</span>
+      <span>Feito com carinho, servido quentinho.</span>
+    </div>
+  </footer>
+
+  <dialog
+    class="card-modal"
+    id="card-modal"
+    aria-labelledby="modal-title"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">Opções</h2>
+        <button
+          class="modal-close"
+          type="button"
+          aria-label="Fechar janela"
+        >
+          &times;
+        </button>
+      </div>
+
+      <p
+        class="modal-status"
+        id="modal-status"
+        role="status"
+        aria-live="polite"
+      ></p>
+      <ul class="modal-list" id="modal-list"></ul>
+
+      <form class="login-form" id="login-form" hidden>
+        <label for="login-email">
+          E-mail
+          <input
+            id="login-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          >
+        </label>
+
+        <label for="login-password">
+          Senha
+          <input
+            id="login-password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          >
+        </label>
+
+        <button class="button" type="submit">Entrar</button>
+        <p class="login-note">
+          Área demonstrativa: O que o senhor esta fazendo aqui professor, vai ver o resto do meu html rosa lindo.
+        </p>
+        <p
+          class="login-status"
+          id="login-status"
+          aria-live="polite"
+        ></p>
+      </form>
+    </div>
+  </dialog>
+
+  <script>
+    const cardOptions = {
+      doces: {
+        title: "Doces",
+        items: [
+          { icon: "🎂", name: "Bolos tradicionais" },
+          { icon: "🥧", name: "Tortas e sobremesas" },
+          { icon: "🍩", name: "Sonhos recheados" },
+          { icon: "🍬", name: "Doces artesanais" }
+        ]
+      },
+      salgados: {
+        title: "Salgados",
+        items: [
+          { icon: "🥖", name: "Pães artesanais" },
+          { icon: "🥧", name: "Empadas" },
+          { icon: "🍗", name: "Coxinhas" },
+          { icon: "🫓", name: "Esfihas assadas" }
+        ]
+      },
+      encomendas: {
+        title: "Encomendas",
+        items: [
+          { icon: "🎉", name: "Bolo de aniversário" },
+          { icon: "🍰", name: "Torta para festas" },
+          { icon: "📦", name: "Kit para reuniões" },
+          { icon: "🛍️", name: "Salgados por encomenda" }
+        ]
+      }
+    };
+
+    const modal = document.querySelector("#card-modal");
+    const modalTitle = document.querySelector("#modal-title");
+    const modalStatus = document.querySelector("#modal-status");
+    const modalList = document.querySelector("#modal-list");
+    const loginForm = document.querySelector("#login-form");
+    const loginEmail = document.querySelector("#login-email");
+    const loginStatus = document.querySelector("#login-status");
+    const closeButton = document.querySelector(".modal-close");
+    const contactButton = document.querySelector("#contact-cta");
+    let lastTrigger = null;
+
+    const contactOptions = [
+      { icon: "📞", name: "(11) 4002-8922", href: "tel:+551140028922" },
+      {
+        icon: "✉️",
+        name: "contato@afetosaboroso.com.br",
+        href: "mailto:contato@afetosaboroso.com.br"
+      },
+      { icon: "📍", name: "Rua das Flores, 123 - Centro" }
+    ];
+
+    const jobOptions = [
+      {
+        icon: "✉️",
+        name: "contratacao@afetosaboroso.com.br",
+        href: "mailto:contratacao@afetosaboroso.com.br"
+      }
+    ];
+
+    function openItemModal(title, items, trigger, statusMessage) {
+      modalTitle.textContent = title;
+      modalStatus.textContent = statusMessage;
+      loginForm.hidden = true;
+      modalList.hidden = false;
+      loginStatus.textContent = "";
+      modalList.replaceChildren(
+        ...items.map((item) => {
+          const listItem = document.createElement("li");
+          const itemIcon = document.createElement("span");
+          const itemContent = item.href
+            ? document.createElement("a")
+            : document.createElement("span");
+
+          itemIcon.className = "option-icon";
+          itemIcon.setAttribute("aria-hidden", "true");
+          itemIcon.textContent = item.icon;
+          itemContent.textContent = item.name;
+
+          if (item.href) {
+            itemContent.href = item.href;
+          }
+
+          listItem.append(itemIcon, itemContent);
+          return listItem;
+        })
+      );
+
+      lastTrigger = trigger;
+      modal.showModal();
+    }
+
+    function openLoginModal(trigger) {
+      modalTitle.textContent = "Acesse sua conta";
+      modalStatus.textContent =
+        "Preencha os campos obrigatórios para acessar sua conta.";
+      modalList.hidden = true;
+      loginForm.hidden = false;
+      loginStatus.textContent = "";
+      lastTrigger = trigger;
+      modal.showModal();
+      loginEmail.focus();
+    }
+
+    document.querySelectorAll("[data-card]").forEach((card) => {
+      card.addEventListener("click", () => {
+        const option = cardOptions[card.dataset.card];
+        openItemModal(
+          option.title,
+          option.items,
+          card,
+          `${option.items.length} opções disponíveis nesta categoria.`
+        );
+      });
+    });
+
+    contactButton.addEventListener("click", () => {
+      openItemModal(
+        "Entre em contato",
+        contactOptions,
+        contactButton,
+        "Telefone, e-mail e endereço da padaria."
+      );
+    });
+
+    document.querySelectorAll("[data-dialog-action]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.dataset.dialogAction === "contact") {
+          openItemModal(
+            "Entre em contato",
+            contactOptions,
+            button,
+            "Telefone, e-mail e endereço da padaria."
+          );
+        } else if (button.dataset.dialogAction === "jobs") {
+          openItemModal(
+            "Trabalhe Conosco",
+            jobOptions,
+            button,
+            "Envie seu currículo para o e-mail abaixo."
+          );
+        } else if (button.dataset.dialogAction === "login") {
+          openLoginModal(button);
+        }
+      });
+    });
+
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      loginStatus.textContent = "";
+      modalStatus.textContent =
+        "A autenticação ainda não está disponível nesta demonstração.";
+    });
+
+    closeButton.addEventListener("click", () => {
+      modal.close();
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.close();
+      }
+    });
+
+    modal.addEventListener("close", () => {
+      if (lastTrigger) {
+        lastTrigger.focus();
+      }
+    });
+  </script>
+</body>
+
+</html>
+
+<!--
+Affordances adicionadas: links e botões mudam de cor ao passar o mouse e
+destacam o foco do teclado. Os cards indicam que são clicáveis e abrem
+sobreposições com opções; menus de contato, conta e trabalho também sinalizam
+suas ações. As sobreposições podem ser fechadas pelo botão, pelo fundo ou
+pela tecla Esc.
+-->
+
+<!--
+Heurísticas de Nielsen aplicadas:
+A) Visibilidade do status: as sobreposições informam o conteúdo exibido e o
+formulário comunica quando a autenticação demonstrativa não está disponível.
+B) Consistência e padrões: cards e ações do menu usam botões, estados de foco
+e sobreposições com apresentação e fechamento consistentes.
+C) Prevenção de erros: e-mail e senha são obrigatórios; o campo de e-mail
+valida o formato antes do envio.
+D) Correspondência com o mundo real: categorias, produtos, ícones e termos
+familiares representam a experiência de uma padaria.
+-->
+
+<!-- Semiótica Aplicada : Mantendo o esquema de cores em tons quentes e leves,
+ pra remeter a sensação doce, coloquei tambem um icone que demonstra varios produtos
+ que podem ser feitos na padaria. -->
